@@ -1,13 +1,10 @@
 package com.example.tp2;
 
 import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.SubMenu;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -15,7 +12,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
+import android.view.SubMenu;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,7 +39,7 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(new Intent(MainActivity.this, PoP.class));
+                    //startActivity(new Intent(MainActivity.this, PoP.class));
 
 
 
@@ -51,7 +49,7 @@ public class MainActivity extends AppCompatActivity
                     linkMenu.add(subject).setOnMenuItemClickListener(onMenuItemClick("LINK"));
                     pdfMenu.add(subject).setOnMenuItemClickListener(onMenuItemClick("PDF"));
                     videoMenu.add(subject).setOnMenuItemClickListener(onMenuItemClick("VIDEO"));
-
+//                    menu.add(subject);
                     Snackbar.make(view, "Matéria adicionada com sucesso!", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
 
@@ -109,6 +107,8 @@ public class MainActivity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        }else if(id == R.id.fab){
+            menu.add(anotherSubjects.peekFirst());
         }
 
         return super.onOptionsItemSelected(item);
@@ -151,6 +151,7 @@ public class MainActivity extends AppCompatActivity
                         thirdFragment.setArguments(args);
                         ft.replace(R.id.frame, thirdFragment);
                         break;
+
                 }
 
                 ft.commit();
