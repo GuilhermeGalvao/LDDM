@@ -9,25 +9,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="@string/hello_blank_fragment" />
+   <EditText
+       android:id="@+id/editID"
+       android:layout_marginTop="50dp"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="pgtTjr3oWB4"/>
     <Button
         android:id="@+id/btn1"
-        android:layout_width="130dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="250dp"
-        android:layout_marginLeft="260dp"
-        android:text="OPEN VIDEO"/>
-
-    <Button
-        android:id="@+id/btn2"
-        android:layout_width="130dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="250dp"
+        android:hint="Open Video"
+        android:layout_marginTop="100dp"
         android:layout_marginLeft="130dp"
-        android:text="OPEN LINK" />
-    <Button
-        android:id="@+id/btn3"
-        android:layout_width="130dp"
-        android:layout_height="50dp"
-        android:text="OPEN PDF" />
-
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </FrameLayout>

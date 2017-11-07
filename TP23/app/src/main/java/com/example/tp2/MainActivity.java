@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity
     SubMenu pdfMenu = null;
     SubMenu linkMenu = null;
     SubMenu videoMenu = null;
-
+    ArrayList<String> Links = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -131,11 +131,11 @@ public class MainActivity extends AppCompatActivity
 
                 switch (fileType) {
                     case "PDF":
-                        FirstFragment firstFragment = new FirstFragment();
-
-                        args.putString("subjectName", item.getTitle().toString());
-                        firstFragment.setArguments(args);
-                        ft.replace(R.id.frame, firstFragment);
+//                        FirstFragment firstFragment = new FirstFragment();
+//
+//                        args.putString("subjectName", item.getTitle().toString());
+//                        firstFragment.setArguments(args);
+//                        ft.replace(R.id.frame, firstFragment);
                         break;
                     case "LINK":
                         SecondFragment secondFragment = new SecondFragment();
