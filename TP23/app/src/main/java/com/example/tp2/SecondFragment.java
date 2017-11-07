@@ -11,12 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,32 +65,43 @@ public class SecondFragment extends Fragment implements View.OnClickListener {
         listItems = new ArrayList<>();
         String nomeArq = subjectName+"Link.txt";
         File arq = new File(nomeArq);
-        try {
-            if (arq.exists()) {
-                FileReader fileR = new FileReader(nomeArq);
-                BufferedReader buffR = new BufferedReader(fileR);
-                String linha = buffR.readLine();
-                while(!linha.equals(null)){
-                    if(!Link.contains(linha)){
-                        Link.add(linha);
-                    }
-                    linha = buffR.readLine();
-                }
-
-                buffR.close();
+//        try {
+//            if (arq.exists()) {
+//                Snackbar.make(Myview, "Arquivo existe", Snackbar.LENGTH_LONG).show();
+//
+//                FileReader fileR = new FileReader(nomeArq);
+//                BufferedReader buffR = new BufferedReader(fileR);
+//                String linha = buffR.readLine();
+//                while(!linha.equals(null)){
+//                    if(!Link.contains(linha)){
+//                        Link.add(linha);
+//                    }
+//                    linha = buffR.readLine();
+//                }
+//
+//                buffR.close();
                 for(int i = 0; i < Link.size(); i ++){
                     listItem list = new listItem("Link", Link.get(i));
                     listItems.add(list);
                 }
-            }else{
-                String link = "Links";
-                listItem list = new listItem(link , "");
-                listItems.add(list);
-            }
-
-        }catch(IOException e){
-
-        }
+//            }else{
+//                String link = "Links";
+//                listItem list = new listItem(link , "");
+//                listItems.add(list);
+//
+//                String subjectName2 = this.getArguments().getString("subjectName");
+//                String nomeArq2 = subjectName+"Link.txt";
+//                FileWriter file = new FileWriter(nomeArq2, true);
+//                BufferedWriter buffW = new BufferedWriter(file);
+//
+//
+//                buffW.close();
+//
+//            }
+//
+//        }catch(IOException e){
+//
+//        }
 
         adapter = new MyAdapter(listItems, getActivity());
 
@@ -121,37 +127,29 @@ public class SecondFragment extends Fragment implements View.OnClickListener {
 
         String contentE1 = e1.getText().toString();
         Link.add(contentE1);
+
+//        listItem listItem = new listItem(contentE1);
+//        listItems.add(listItem);
         System.out.println("link = " + contentE1);
 //
         listItem listItem = new listItem("Link",contentE1);
-        String subjectName = this.getArguments().getString("subjectName");
-        String nomeArq = subjectName+"Link.txt";
-
-        File arq = new File(nomeArq);
-        try {
-            if (arq.exists()) {
-                FileWriter file = new FileWriter(nomeArq);
-                BufferedWriter buffW = new BufferedWriter(file);
-
-                buffW.write(contentE1);
+//        String subjectName = this.getArguments().getString("subjectName");
+//        String nomeArq = subjectName+"Link.txt";
+//
+//        File arq = new File(nomeArq);
+//        try {
+//                FileWriter file = new FileWriter(nomeArq, true);
+//                BufferedWriter buffW = new BufferedWriter(file);
+//
+//                buffW.write(contentE1);
                 listItems.add(listItem);
-
-                buffW.close();
-                file.close();
-            }else{
-                FileWriter file = new FileWriter(nomeArq);
-                BufferedWriter buffW = new BufferedWriter(file);
-
-                buffW.write(contentE1);
-                listItems.add(listItem);
-
-                buffW.close();
-                file.close();
-            }
-
-        }catch(IOException e){
-
-        }
+//
+//                buffW.close();
+//                file.close();
+//
+//        }catch(IOException e){
+//
+//        }
     }
 
 
