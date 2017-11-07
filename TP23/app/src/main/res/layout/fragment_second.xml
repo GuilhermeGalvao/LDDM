@@ -5,21 +5,38 @@
     tools:context="com.example.tp2.SecondFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
     <TextView
+        android:hint="Escreva o link que deseja guardar"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="150dp"/>
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="270dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="130dp"
+        android:layout_marginRight="160dp"
+        android:layout_marginLeft="60dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Link" />
+    <Button
+
+        android:id="@+id/btn1"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginLeft="112dp"
+        android:hint="Cadastrar Link"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-    <Button
-        android:id="@+id/btn1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="button1"/>
-    <Button
-        android:id="@+id/btn2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="button2"/>
-
-
-
+        android:layout_marginTop="250dp">
+    </android.support.v7.widget.RecyclerView>
 </FrameLayout>
