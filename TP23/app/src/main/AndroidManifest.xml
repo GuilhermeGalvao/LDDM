@@ -19,7 +19,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".OpenPdf"></activity>
+        <activity android:name=".OpenPdf" />
+        <activity android:name=".YoutubeActivity"></activity>
     </application>
 
 </manifest>

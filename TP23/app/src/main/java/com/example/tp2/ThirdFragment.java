@@ -27,15 +27,14 @@ public class ThirdFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
-
-        /*String[] menuitem = {"Vídeos", "Links"};
+        /*
+        String[] menuitem = {"Vídeos", "Links"};
 
         ListView listview = (ListView) Myview.findViewById(R.id.lviw);
 
         ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(
                 getActivity(), android.R.layout.simple_list_item_1,
-                menuitem
-        );
+                menuitem);
 
         listview.setAdapter(listViewAdapter);*/
         String subjectName = this.getArguments().getString("subjectName");
@@ -53,7 +52,7 @@ public class ThirdFragment extends Fragment implements View.OnClickListener {
             case btn1:
 //                    File file = new File("GUilhermeG.txt");
 //                    abrirArq(file);
-                OpenVideo();
+
 
                 Snackbar.make(view, "Tentei abrir o video", Snackbar.LENGTH_LONG).show();
                 break;

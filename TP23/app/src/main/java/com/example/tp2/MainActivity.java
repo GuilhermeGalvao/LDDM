@@ -131,12 +131,13 @@ public class MainActivity extends AppCompatActivity
 
                 switch (fileType) {
                     case "PDF":
-//                        FirstFragment firstFragment = new FirstFragment();
-//
-//                        args.putString("subjectName", item.getTitle().toString());
-//                        firstFragment.setArguments(args);
-//                        ft.replace(R.id.frame, firstFragment);
+                        FirstFragment firsFragment = new FirstFragment();
+
+                        args.putString("subjectName", item.getTitle().toString());
+                        firsFragment.setArguments(args);
+                        ft.replace(R.id.frame, firsFragment);
                         break;
+
                     case "LINK":
                         SecondFragment secondFragment = new SecondFragment();
 
