@@ -17,6 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
+
 @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
 public class Valores extends AppCompatActivity implements View.OnClickListener{
     TextView textView;
@@ -50,6 +52,18 @@ public class Valores extends AppCompatActivity implements View.OnClickListener{
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         mySensor = sensorManager.getDefaultSensor(Sensor.TYPE_SIGNIFICANT_MOTION);
         sensorManager.requestTriggerSensor(myListener,mySensor);
+
+        BancoController crud = new BancoController(getBaseContext());
+//
+        List<String> cursos = crud.getAllContacts();
+
+        ListView listaDeCursos = (ListView) findViewById(R.id.listView);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, cursos);
+
+        listaDeCursos.setAdapter(adapter);
+
 
         //carregar o valor total gasto
         BancoController crud2 = new BancoController(getBaseContext());

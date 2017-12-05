@@ -5,6 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by julio on 04/12/17.
  */
@@ -64,7 +67,27 @@ public class BancoController {
         // return count
         return i;
     }
+    public List<String> getAllContacts() {
+        List<String> contactList = new ArrayList<String>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + banco.TABLE;
 
+        SQLiteDatabase db = banco.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                String valor = "";
+                valor = cursor.getString(1);
+
+                contactList.add(valor);
+            } while (cursor.moveToNext());
+        }
+
+        // return contact list
+        return contactList;
+    }
 
 
 }
