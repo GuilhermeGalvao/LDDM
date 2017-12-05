@@ -44,24 +44,21 @@ public class Valores extends AppCompatActivity implements View.OnClickListener{
 
 
         Button button = (Button) findViewById(R.id.btn1);
-        Button button2 = (Button) findViewById(R.id.btn2);
+       // Button button2 = (Button) findViewById(R.id.btn2);
         button.setOnClickListener(this);
-        button2.setOnClickListener(this);
+       // button2.setOnClickListener(this);
 
         //inicializar o sensor
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         mySensor = sensorManager.getDefaultSensor(Sensor.TYPE_SIGNIFICANT_MOTION);
         sensorManager.requestTriggerSensor(myListener,mySensor);
 
+        //Carregar Valores gastos
         BancoController crud = new BancoController(getBaseContext());
-//
         List<String> cursos = crud.getAllContacts();
-
         ListView listaDeCursos = (ListView) findViewById(R.id.listView);
-
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, cursos);
-
         listaDeCursos.setAdapter(adapter);
 
 
@@ -84,9 +81,6 @@ public class Valores extends AppCompatActivity implements View.OnClickListener{
                 Toast.makeText(this, "" + valor2 , Toast.LENGTH_SHORT).show();
                 resultado = crud.inserirDado(valor2);
                 Toast.makeText(this, resultado , Toast.LENGTH_SHORT).show();
-
-                break;
-            case R.id.btn2:
 
                 break;
 
