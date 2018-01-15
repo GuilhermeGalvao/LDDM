@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#caceb6"
+    android:layout_height="match_parent"
+    tools:context="com.example.administrador.myapplication.CodeBar">
+
+    <TextView
+        android:id="@+id/Code"
+        android:layout_width="match_parent"
+        android:layout_height="92dp"
+        android:layout_x="1dp"
+        android:layout_y="16dp"
+        android:hint="Codigo de Barras" />
+
+
+    <Button
+        android:id="@+id/Stop"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_x="100dp"
+        android:layout_y="313dp"
+        android:text="Stop" />
+
+    <Button
+        android:id="@+id/SaveData"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_x="100dp"
+        android:layout_y="364dp"
+        android:text="Save Data"
+        tools:layout_editor_absoluteX="117dp"
+        tools:layout_editor_absoluteY="67dp" />
+
+    <TextView
+        android:id="@+id/Valor"
+        android:layout_width="match_parent"
+        android:layout_height="92dp"
+        android:layout_x="2dp"
+        android:layout_y="112dp"
+        android:text="Valor" />
+
+</AbsoluteLayout>

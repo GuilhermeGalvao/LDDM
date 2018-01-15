@@ -20,16 +20,21 @@ import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
+import com.google.zxing.Result;
 
 import java.io.IOException;
 
+import me.dm7.barcodescanner.zxing.ZXingScannerView;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private ZXingScannerView scannerView;
     SurfaceView cameraView;
     TextView textView;
     CameraSource cameraSource;
     final int RequestCameraPermissionID = 1001;
     String valor ;
+    String code ;
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode){
@@ -144,10 +149,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
 
         Toast.makeText(MainActivity.this, valor, Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(getApplicationContext(), Valores.class);
-        intent.putExtra("Valor", valor);
-        startActivity(intent);
+        scanCode(view);
+//        Intent intent = new Intent(getApplicationContext(), Valores.class);
+//        intent.putExtra("Valor", valor);
+//        startActivity(intent);
 
+    }
+    public void scanCode(View view){
+        scannerView = new ZXingScannerView(this);
+        scannerView.setResultHandler(new MainActivity.ZxingScannerResultHandler());
+
+        setContentView(scannerView);
+        scannerView.startCamera();
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        scannerView.startCamera();
+    }
+
+    class ZxingScannerResultHandler implements ZXingScannerView.ResultHandler{
+
+        @Override
+        public void handleResult(Result result) {
+            String resultCode = result.getText();
+            Toast.makeText(MainActivity.this, resultCode, Toast.LENGTH_SHORT).show();
+            code = resultCode;
+            Intent intent = new Intent(getApplicationContext(), CodeBar.class);
+            intent.putExtra("Valor",valor);
+            intent.putExtra("Code", code);
+//            setContentView(R.layout.activity_valores);
+            startActivity(intent);
+            scannerView.startCamera();
+        }
     }
 
 }
+
