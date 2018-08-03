@@ -25,7 +25,9 @@ import com.google.zxing.Result;
 import java.io.IOException;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
-
+/**Activity to start OCR vision and barcode scanner
+    After read a value from OCR vision the user will click on button called cadastrar and will start another function for start barcodeScanner
+ */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ZXingScannerView scannerView;
@@ -60,10 +62,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
         final Button button = (Button)findViewById(R.id.cadastrar);
         cameraView = (SurfaceView) findViewById(R.id.surface_view);
         textView = (TextView) findViewById(R.id.text_view);
         button.setOnClickListener(this);
+
         TextRecognizer textRecognizer = new TextRecognizer.Builder(getApplicationContext()).build();
         if (!textRecognizer.isOperational()) {
             Log.w("MainActivity", "Detector dependencies are not yet available");
@@ -144,6 +149,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             });
         }
+
     }
     @Override
     public void onClick(View view) {
@@ -163,6 +169,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         scannerView.startCamera();
     }
 
+
     @Override
     public void onPause(){
         super.onPause();
@@ -174,7 +181,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         @Override
         public void handleResult(Result result) {
             String resultCode = result.getText();
-            Toast.makeText(MainActivity.this, resultCode, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(MainActivity.this, resultCode, Toast.LENGTH_SHORT).show();
             code = resultCode;
             Intent intent = new Intent(getApplicationContext(), CodeBar.class);
             intent.putExtra("Valor",valor);

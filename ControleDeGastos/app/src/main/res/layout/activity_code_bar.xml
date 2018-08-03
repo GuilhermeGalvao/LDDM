@@ -13,7 +13,7 @@
         android:layout_height="92dp"
         android:layout_x="1dp"
         android:layout_y="16dp"
-        android:hint="Codigo de Barras" />
+        android:hint="Code Bar" />
 
 
     <Button
@@ -40,6 +40,34 @@
         android:layout_height="92dp"
         android:layout_x="2dp"
         android:layout_y="112dp"
-        android:text="Valor" />
+        android:text="Value" />
+
+    <Button
+        android:id="@+id/SaveAndStop"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_x="103dp"
+        android:layout_y="420dp"
+        android:text="Save data and stop"
+        tools:layout_editor_absoluteX="117dp"
+        tools:layout_editor_absoluteY="67dp" />
+
+    <EditText
+        android:id="@+id/NewValue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_x="-4dp"
+        android:layout_y="487dp"
+        android:ems="10"
+        android:hint="New Value"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/ReplaceValue"
+        android:layout_width="167dp"
+        android:layout_height="wrap_content"
+        android:layout_x="96dp"
+        android:layout_y="522dp"
+        android:text="Replace Value" />
 
 </AbsoluteLayout>

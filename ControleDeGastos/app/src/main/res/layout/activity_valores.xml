@@ -8,69 +8,43 @@
     android:background="#caceb6"
     tools:context="com.example.administrador.myapplication.Valores">
 
-    <LinearLayout
-        android:layout_width="200dp"
-        android:layout_height="500dp"
-        android:orientation="vertical">
 
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="499dp"
+        android:layout_x="1dp"
+        android:layout_y="19dp">
 
-
-        <TextView
-            android:id="@+id/textView_2"
-            android:text="Total Itens :"
-            android:textSize="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="40dp" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:textSize="15dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Itens Ja cadastrados" />
-
-
-        <ListView
-            android:id="@+id/listView"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-
-        </ListView>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linear"
-        android:layout_width="180dp"
-        android:layout_height="500dp"
-        android:layout_x="204dp"
-        android:layout_y="3dp"
-        android:orientation="vertical">
-
-
-        <TextView
-            android:text="Valor Obtido : "
-            android:id="@+id/textView_Valor"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    </LinearLayout>
+    </ListView>
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
+        android:id="@+id/textView3"
+        android:layout_width="386dp"
         android:layout_height="wrap_content"
-        android:layout_x="3dp"
-        android:layout_y="539dp"
-        android:text="                             Balance para voltar a tela inicial           " />
+        android:layout_x="0dp"
+        android:layout_y="2dp"
+        android:text="items already taken"
+        android:textSize="15dp" />
 
     <Button
-        android:id="@+id/btn1"
+        android:id="@+id/Logout"
         android:layout_width="166dp"
         android:layout_height="32dp"
-        android:layout_x="116dp"
-        android:layout_y="506dp"
+        android:layout_x="205dp"
+        android:layout_y="528dp"
         android:background="#caceb6"
-        android:text="Export LOG"
+        android:text="Log Out"
+        android:textColor="@android:color/black" />
+
+    <Button
+        android:id="@+id/Register"
+        android:layout_width="166dp"
+        android:layout_height="32dp"
+        android:layout_x="11dp"
+        android:layout_y="530dp"
+        android:background="#caceb6"
+        android:text="Start register"
         android:textColor="@android:color/black" />
 
 </AbsoluteLayout>

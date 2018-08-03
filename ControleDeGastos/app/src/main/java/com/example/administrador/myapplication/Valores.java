@@ -1,8 +1,6 @@
 package com.example.administrador.myapplication;
 
 import android.content.Intent;
-import android.hardware.Sensor;
-import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -11,91 +9,82 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 
-import java.util.ArrayList;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+//import android.widget.EditText;
 
 @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
-public class Valores extends AppCompatActivity implements View.OnClickListener{
-    TextView textView;
-    private ListView lista;
-    String valor;
-    private Sensor mySensor;
-    private SensorManager sensorManager;
-    ArrayAdapter<String> adapter;
-    ArrayList<String> itemList;
+public class Valores extends AppCompatActivity{
 
+    private DatabaseReference mDataBase;
+    private  String mUserId;
+    private FirebaseAuth mFirebaseAuth;
+    private FirebaseUser mFirebaseUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_valores);
-        textView = (TextView) findViewById(R.id.textView_Valor);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
 
-        Intent intent = getIntent();
-        valor = intent.getStringExtra("Valor");
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
+        mDataBase = FirebaseDatabase.getInstance().getReference();
 
-        //mostrar o valor pego pelo OCR
-        textView.setText("valor = "  + valor);
-//        Toast.makeText(Valores.this, "setText", Toast.LENGTH_SHORT).show();
+        if(mFirebaseUser == null){
+            Intent intent = new Intent(Valores.this, LoginSenha.class);
+            startActivity(intent);
+        }else{
+            mUserId = mFirebaseUser.getUid();
 
-//        Button button3 = (Button) findViewById(R.id.CodeScan);
-//        button3.setOnClickListener(this);
-        Button button = (Button) findViewById(R.id.btn1);
-       // Button button2 = (Button) findViewById(R.id.btn2);
-        button.setOnClickListener(this);
-       // button2.setOnClickListener(this);
+            final ListView listView = (ListView) findViewById(R.id.listView);
+            final ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                    android.R.layout.simple_list_item_1,android.R.id.text1);
+            listView.setAdapter(adapter);
 
-        //inicializar o sensor
-//        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-//        mySensor = sensorManager.getDefaultSensor(Sensor.TYPE_SIGNIFICANT_MOTION);
-//        sensorManager.requestTriggerSensor(myListener,mySensor);
-
-        //Carregar Valores gastos
-//        BancoController crud = new BancoController(getBaseContext());
-//        List<String> cursos = crud.getAllContacts();
-//        ListView listaDeCursos = (ListView) findViewById(R.id.listView);
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-//                android.R.layout.simple_list_item_1, cursos);
-//        listaDeCursos.setAdapter(adapter);
-//
-//
-//        carregar o valor total gasto
-//        BancoController crud2 = new BancoController(getBaseContext());
-///        setContentView(R.layout.activity_valores);
-//        TextView textView2 = (TextView) findViewById(R.id.textView3);
-//        double z = crud2.getContactsCount();
-//        textView2.setText("Total Gasto" + z);
-
-
-    }
-    public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.btn1:
-
-//                BancoController crud = new BancoController(getBaseContext());
-//                String resultado;
-//                Double valor2 = Double.parseDouble(valor.replace(",", "."));
-//                Toast.makeText(this, "" + valor2 , Toast.LENGTH_SHORT).show();
-//                resultado = crud.inserirDado(valor2);
-//                Toast.makeText(this, resultado , Toast.LENGTH_SHORT).show();
-
-//                break;
-//            case R.id.CodeScan:
-//                Intent intent = new Intent(getApplicationContext(), CodeBar.class);
-//                startActivity(intent);
-//                break;
-
+            mDataBase.child("users").child(mUserId).child("items").addChildEventListener(new ChildEventListener() {
+                @Override
+                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                    adapter.add((String)dataSnapshot.child("Itens adicionados").getValue());
+                }
+                @Override
+                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                }
+                @Override
+                public void onChildRemoved(DataSnapshot dataSnapshot) {
+                    adapter.remove((String) dataSnapshot.child("Itens adicionados").getValue());
+                }
+                @Override
+                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+                }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                }
+            });
         }
+        Button logOut = (Button) findViewById(R.id.Logout);
+        logOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mFirebaseAuth.signOut();
+                Intent intent = new Intent(Valores.this, LoginSenha.class);
+                startActivity(intent);
+            }
+        });
+        Button register = (Button) findViewById(R.id.Register);
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Valores.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
-    //sensor para voltar para a tela principal
-//    public final TriggerEventListener myListener = new TriggerEventListener() {
-//        @Override
-//        public void onTrigger(TriggerEvent triggerEvent) {
-//            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-//            startActivity(intent);
-//        }
-//    };
-
-
-
 }
